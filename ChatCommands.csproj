@@ -8,8 +8,16 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <UnhollowedDllPath>C:\Program Files (x86)\Steam\steamapps\common\VRising\BepInEx\unhollowed</UnhollowedDllPath>
+    <UnhollowedDllPath>C:\steamcmd\vrising\BepInEx\unhollowed</UnhollowedDllPath>
   </PropertyGroup>
+
+  <Target Name="CopyDLLs" AfterTargets="Build">
+    <Message Text="Executing CopyDLLs task" Importance="High" />
+
+    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="C:\steamcmd\vrising\BepInEx\plugins\" />
+
+    <Message Text="Copied build files" Importance="High" />
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.IL2CPP" Version="6.0.0-*" IncludeAssets="compile" />
@@ -71,9 +79,9 @@
     <Reference Include="Malee.ReorderableList">
       <HintPath>$(UnhollowedDllPath)\Malee.ReorderableList.dll</HintPath>
     </Reference>
-	  <Reference Include="Newtonsoft.Json">
-	    <HintPath>$(UnhollowedDllPath)\Newtonsoft.Json.dll</HintPath>
-	  </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(UnhollowedDllPath)\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectM.Behaviours">
       <HintPath>$(UnhollowedDllPath)\ProjectM.Behaviours.dll</HintPath>
     </Reference>
